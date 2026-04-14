@@ -683,8 +683,9 @@ useGLTF.preload(CARD_URL);
 
 export default function UCardScene() {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full pointer-events-none">
       <Canvas
+        style={{ pointerEvents: "none" }}
         dpr={CANVAS_DPR}
         camera={{ position: CAMERA_POSITION, fov: CAMERA_FOV }}
         gl={{
