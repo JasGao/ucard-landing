@@ -3,7 +3,6 @@
 import { Suspense, useRef, useEffect, useLayoutEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, useGLTF } from "@react-three/drei";
-import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -21,7 +20,8 @@ const ENV_MAP_INTENSITY = 3;
 /** drei Environment 整体倍率，默认 1 */
 const ENVIRONMENT_INTENSITY = 2;
 /** Balance startup speed and clarity on first load. */
-const CANVAS_DPR = [1, 1.8];
+const CANVAS_DPR = [1, 1.5];
+const TEXTURE_ANISOTROPY_CAP = 4;
 const MQ_DESKTOP = "(min-width: 768px)";
 
 /**
@@ -619,6 +619,7 @@ function Card({ url }) {
 
   useEffect(() => {
     const maxAnisotropy = gl.capabilities.getMaxAnisotropy();
+    const targetAnisotropy = Math.min(maxAnisotropy, TEXTURE_ANISOTROPY_CAP);
     scene.traverse((child) => {
       if (!child.isMesh) return;
       child.castShadow = true;
@@ -632,10 +633,11 @@ function Card({ url }) {
         for (const key of ["map", "normalMap", "roughnessMap", "metalnessMap", "aoMap"]) {
           const tex = mat[key];
           if (!tex?.isTexture) continue;
-          tex.anisotropy = Math.max(tex.anisotropy || 1, maxAnisotropy);
-          tex.generateMipmaps = true;
-          tex.minFilter = THREE.LinearMipmapLinearFilter;
-          tex.needsUpdate = true;
+          const nextAnisotropy = Math.max(tex.anisotropy || 1, targetAnisotropy);
+          if (nextAnisotropy !== tex.anisotropy) {
+            tex.anisotropy = nextAnisotropy;
+            tex.needsUpdate = true;
+          }
         }
       }
     });
@@ -708,7 +710,7 @@ export default function UCardScene() {
           color="#b8c8ff"
         />
         <pointLight position={[4, 1.9, 4]} intensity={0.8} color="#ffffff" />
-        <Environment resolution={256} environmentIntensity={ENVIRONMENT_INTENSITY}>
+        <Environment resolution={128} environmentIntensity={ENVIRONMENT_INTENSITY}>
           <Lightformer
             intensity={2.2}
             rotation={[0, Math.PI / 2, 0]}
