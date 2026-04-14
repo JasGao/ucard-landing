@@ -16,9 +16,9 @@ export const metadata = {
   title: "UCard",
   description: "The premium Mastercard designed for your digital wealth.",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon.ico?v=2",
+    shortcut: "/favicon.ico?v=2",
+    apple: "/favicon.ico?v=2",
   },
   openGraph: {
     title: "UCard",
