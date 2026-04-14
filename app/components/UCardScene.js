@@ -181,11 +181,7 @@ const CARD_K6_MOBILE = {
   scale: 8.59,
 };
 
-/**
- * 每一段结束时的卡位姿（与 page 里 section id 对应）。
- * [0]=Hero，[1]=#section-2 对齐时，… [6]=#section-7。下一段起点永远是上一段终点。
- * 改某一屏的落点：编辑对应下标的 K 值即可。
- */
+
 const CARD_KEYFRAMES_DESKTOP = [
   CARD_K0,
   CARD_K1_DESKTOP,
@@ -206,7 +202,6 @@ const CARD_KEYFRAMES_MOBILE = [
   CARD_K6_MOBILE,
 ];
 
-/** 仅第一段（K0->K1）使用中点，让开场更有层次 */
 const CARD_SEGMENT1_MID_POSITION = {
   desktop: { x: 0.5, y: -0.35, z: 0.85 },
   mobile: { x: 0, y: -1.15, z: 0.35 },
@@ -253,7 +248,7 @@ function setMeshEnvIntensity(mesh, value) {
   }
 }
 
-/** 略提暗色 PBR 面的底光，避免整卡糊成一块黑（很弱，主要靠灯光 + IBL） */
+/** 略提暗色 PBR 面的底光，（很弱，主要靠灯光 + IBL） */
 function boostMeshReadability(mesh) {
   const { material } = mesh;
   if (!material) return;
