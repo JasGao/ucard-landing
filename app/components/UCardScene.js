@@ -14,7 +14,7 @@ function flushGroupWorldMatrix(group) {
   group.updateMatrixWorld(true);
 }
 
-const CARD_URL = "/models/card.glb";
+const CARD_URL = "/models/card.optimized.glb";
 /** 模型材质上环境贴图强度（IBL 反射）；偏暗时可调到 2～3 */
 const ENV_MAP_INTENSITY = 3;
 /** drei Environment 整体倍率，默认 1 */
