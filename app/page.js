@@ -82,7 +82,7 @@ export default function Home() {
             UCard
           </div>
           <a
-            href="https://www.ucard.credit/login"
+            href="https://app.ucard.credit/login"
             className={getCardButtonClassName}
           >
             Get A Card
