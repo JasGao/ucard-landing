@@ -20,8 +20,8 @@ const CARD_URL = "/models/card.glb";
 const ENV_MAP_INTENSITY = 3;
 /** drei Environment 整体倍率，默认 1 */
 const ENVIRONMENT_INTENSITY = 2;
-/** 提高内部渲染分辨率，优先保证首屏清晰度 */
-const CANVAS_DPR = 3;
+/** Balance startup speed and clarity on first load. */
+const CANVAS_DPR = [1, 1.8];
 const MQ_DESKTOP = "(min-width: 768px)";
 
 /**
@@ -238,7 +238,9 @@ const PHONE_IMAGE_END_VIEWPORT_FACTOR = 0.3;
 const PHONE_3D_LEAVE_AFTER_PHONE_SCROLL_PX = 100;
 const PHONE_FOLLOW_WORLD_X = 1.6;
 const PHONE_FOLLOW_WORLD_Z = 0;
-const PHONE_FOLLOW_WORLD_Y_FACTOR = 0.0032;
+// Pixel-to-world mapping for matching phone image drift speed.
+// Lowered to keep 3D card follow pace in sync with the 2D phone image.
+const PHONE_FOLLOW_WORLD_Y_FACTOR = 0.00175;
 const PHONE_FOLLOW_RELEASE_BLEND_PX = 120;
 
 

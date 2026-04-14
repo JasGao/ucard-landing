@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PreloadResources from "./preload-resources";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "UCard",
   description: "The premium Mastercard designed for your digital wealth.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "UCard",
     description: "The premium Mastercard designed for your digital wealth.",
@@ -33,7 +39,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <PreloadResources />
+        {children}
+      </body>
     </html>
   );
 }
