@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://ucard.credit"),
   title: "UCard",
   description: "The premium Mastercard designed for your digital wealth.",
   icons: {
@@ -23,13 +24,23 @@ export const metadata = {
   openGraph: {
     title: "UCard",
     description: "The premium Mastercard designed for your digital wealth.",
-    images: ["/meta.png"],
+    url: "https://ucard.credit",
+    siteName: "UCard",
+    images: [
+      {
+        url: "/meta-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "UCard",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "UCard",
     description: "The premium Mastercard designed for your digital wealth.",
-    images: ["/meta.png"],
+    images: ["/meta-og.jpg"],
   },
 };
 
