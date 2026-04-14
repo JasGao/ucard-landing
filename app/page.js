@@ -292,7 +292,7 @@ export default function Home() {
                 <li>4. Receive rapid approval to activate your card.</li>
               </ol>
               <a
-                href="https://www.ucard.credit/login"
+                href="https://app.ucard.credit/login"
                 className={`mt-8 ${getCardButtonClassName} sm:mt-10`}
               >
                 Get A Card
